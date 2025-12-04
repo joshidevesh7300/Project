@@ -6,8 +6,7 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 sh 'echo Cloning repo...'
-                sh 'sleep 5'
-            }
+                            }
         }
 
         stage('Build Docker Image') {
@@ -27,7 +26,7 @@ pipeline {
         stage('Final Slow Step') {
             steps {
                 sh 'echo Final slow step...'
-                sh 'sleep 20'
+                sh ' echo Fast clone'
             }
         }
     }
