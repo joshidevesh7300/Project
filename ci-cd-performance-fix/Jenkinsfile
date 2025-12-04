@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                echo "Cloning repository..."
+                sh 'sleep 5'        
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "Building slow docker image..."
+                sh 'docker build -t slow-app .'
+            }
+        }
+
+        stage('Run App Tests') {
+            steps {
+                echo "Running slow tests..."
+                sh 'sleep 10'
+            }
+        }
+
+        stage('Final Slow Step') {
+            steps {
+                sh 'sleep 15'
+                echo "Done slow pipeline!"
+            }
+        }
+    }
+}
