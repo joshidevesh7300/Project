@@ -6,21 +6,21 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 sh 'echo Cloning repo...'
-                sh 'sleep 5'        // intentionally slow
+                sh 'sleep 5'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 sh 'echo Building image...'
-                sh 'docker build -t slow-image .'
+                sh 'docker build -t slow-image slow-ci-cd-demo/'
             }
         }
 
         stage('Run Slow Script') {
             steps {
-                sh 'chmod +x slow_script.sh'
-                sh './slow_script.sh'
+                sh 'chmod +x slow-ci-cd-demo/slow_script.sh'
+                sh './slow-ci-cd-demo/slow_script.sh'
             }
         }
 
