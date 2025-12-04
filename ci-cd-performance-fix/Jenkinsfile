@@ -6,28 +6,30 @@ pipeline {
         stage('Clone') {
             steps {
                 echo "Cloning repository..."
-                sh 'sleep 5'        
+                sh 'sleep 5'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo "Building slow docker image..."
-                sh 'docker build -t slow-app .'
+                echo "Building docker image..."
+                dir('ci-cd-performance-fix') {
+                    sh 'docker build -t slow-app .'
+                }
             }
         }
 
         stage('Run App Tests') {
             steps {
-                echo "Running slow tests..."
+                echo "Running tests..."
                 sh 'sleep 10'
             }
         }
 
-        stage('Final Slow Step') {
+        stage('Final Step') {
             steps {
                 sh 'sleep 15'
-                echo "Done slow pipeline!"
+                echo "Done pipeline!"
             }
         }
     }
