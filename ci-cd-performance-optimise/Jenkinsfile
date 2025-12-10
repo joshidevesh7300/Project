@@ -2,35 +2,36 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Clone') {
+        stage('Build') {
             steps {
-                echo "Cloning repository..."
-                sh 'sleep 5'
+                // Build the image. 
+                // We tag it ':latest' so we can refer to it easily in the next step.
+                sh 'docker build -t my-app:latest .'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Test') {
             steps {
-                echo "Building docker image..."
-                dir('ci-cd-performance-fix') {
-                    sh 'docker build -t slow-app .'
-                }
+                // Run the container to execute tests, then remove it immediately (--rm).
+                // This keeps the test environment identical to production.
+                sh 'docker run --rm my-app:latest python -m unittest' 
             }
         }
+    }
 
-        stage('Run App Tests') {
-            steps {
-                echo "Running tests..."
-                sh 'sleep 10'
-            }
+    // The 'post' block runs automatically at the end, regardless of success or failure.
+    post {
+        always {
+            echo 'Cleaning up resources...'
+            // Delete the image to save disk space on your Jenkins agent.
+            // '|| true' ensures the pipeline doesn't crash if the image is already gone.
+            sh 'docker rmi my-app:latest || true'
         }
-
-        stage('Final Step') {
-            steps {
-                sh 'sleep 15'
-                echo "Done pipeline!"
-            }
+        success {
+            echo 'Great success! The build passed.'
+        }
+        failure {
+            echo 'Build failed. Check logs.'
         }
     }
 }
