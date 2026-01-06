@@ -8,7 +8,9 @@ resource "aws_instance" "lab_vm" {
   key_name      = "lab-key"
 
   tags = {
-    Name = "devops-lab-vm"
-    Owner = "student"
+    Name      = "devops-lab-vm"
+    Project   = "EdTech-Lab"
+    Owner     = "Student"
+    AutoStop  = "true"
   }
 }
