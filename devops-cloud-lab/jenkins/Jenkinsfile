@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/joshidevesh7300/Project.git'
+            }
+        }
+
+        stage('Build Lab Docker Image') {
+            steps {
+                sh 'docker build -t devops-lab devops-cloud-lab/docker'
+            }
+        }
+
+        stage('Provision AWS Lab VM') {
+            steps {
+                dir('devops-cloud-lab/terraform') {
+                    sh 'terraform init'
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+    }
+}
