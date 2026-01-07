@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        AWS_DEFAULT_REGION = "ap-south-1"
+    }
+
     stages {
 
         stage('Checkout Code') {
@@ -9,13 +13,16 @@ pipeline {
             }
         }
 
-        stage('Destroy AWS Lab VM') {
+        stage('Terraform Destroy') {
             steps {
-                input message: 'Are you sure you want to destroy the lab?'
-
-                dir('devops-cloud-lab/terraform') {
-                    sh 'terraform init'
-                    sh 'terraform destroy -auto-approve'
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-lab-user'
+                ]]) {
+                    dir('devops-cloud-lab/terraform') {
+                        sh 'terraform init'
+                        sh 'terraform destroy -auto-approve'
+                    }
                 }
             }
         }
