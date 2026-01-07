@@ -5,16 +5,12 @@ pipeline {
         choice(
             name: 'ACTION',
             choices: ['CREATE', 'DESTROY'],
-            description: 'Select Terraform action'
+            description: 'Choose CREATE to provision infra or DESTROY to remove infra'
         )
     }
 
     environment {
         AWS_DEFAULT_REGION = "ap-south-1"
-    }
-
-    options {
-        timeout(time: 3, unit: 'MINUTES')
     }
 
     stages {
@@ -25,43 +21,30 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
+        stage('User Confirmation') {
             steps {
-                dir('devops-cloud-lab/terraform') {
-                    sh 'terraform init'
-                }
+                input message: "You selected ${params.ACTION}. Do you want to continue?"
             }
         }
 
-        stage('Terraform Create') {
-            when {
-                expression { params.ACTION == 'CREATE' }
-            }
+        stage('Terraform Action') {
             steps {
-                withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'aws-lab-user'
-                ]]) {
-                    dir('devops-cloud-lab/terraform') {
-                        sh 'terraform apply -auto-approve'
-                    }
-                }
-            }
-        }
+                timeout(time: 3, unit: 'MINUTES') {
+                    withCredentials([[ 
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-lab-user'
+                    ]]) {
+                        dir('devops-cloud-lab/terraform') {
+                            sh 'terraform init'
 
-        stage('Terraform Destroy') {
-            when {
-                expression { params.ACTION == 'DESTROY' }
-            }
-            steps {
-                input message: '⚠️ Are you sure you want to DESTROY the infrastructure?'
-
-                withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'aws-lab-user'
-                ]]) {
-                    dir('devops-cloud-lab/terraform') {
-                        sh 'terraform destroy -auto-approve'
+                            script {
+                                if (params.ACTION == 'CREATE') {
+                                    sh 'terraform apply -auto-approve'
+                                } else if (params.ACTION == 'DESTROY') {
+                                    sh 'terraform destroy -auto-approve'
+                                }
+                            }
+                        }
                     }
                 }
             }
