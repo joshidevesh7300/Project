@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        AWS_DEFAULT_REGION = "ap-south-1"
+    }
+
     stages {
 
         stage('Checkout Code') {
@@ -9,17 +13,16 @@ pipeline {
             }
         }
 
-        stage('Build Lab Docker Image') {
+        stage('Terraform Apply') {
             steps {
-                sh 'docker build -t devops-lab devops-cloud-lab/docker'
-            }
-        }
-
-        stage('Provision AWS Lab VM') {
-            steps {
-                dir('devops-cloud-lab/terraform') {
-                    sh 'terraform init'
-                    sh 'terraform apply -auto-approve'
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-lab-user'
+                ]]) {
+                    dir('devops-cloud-lab/terraform') {
+                        sh 'terraform init'
+                        sh 'terraform apply -auto-approve'
+                    }
                 }
             }
         }
