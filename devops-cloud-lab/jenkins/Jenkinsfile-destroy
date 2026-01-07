@@ -13,11 +13,21 @@ pipeline {
             }
         }
 
+        stage('Confirm Destroy') {
+            steps {
+                script {
+                    input(
+                        id: 'DestroyConfirm',
+                        message: '⚠️ Do you really want to DESTROY the infrastructure?',
+                        ok: 'YES, DESTROY',
+                        submitter: 'deveshjoshi7300@gmail.com'
+                    )
+                }
+            }
+        }
+
         stage('Terraform Destroy') {
             steps {
-
-                input message: 'Are you sure you want to DESTROY the infrastructure?'
-
                 timeout(time: 3, unit: 'MINUTES') {
                     withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
