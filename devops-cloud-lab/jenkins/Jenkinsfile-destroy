@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout Code') {
             steps {
                 git 'https://github.com/joshidevesh7300/Project.git'
@@ -13,16 +14,20 @@ pipeline {
         }
 
         stage('Terraform Destroy') {
-    steps {
-        input message: 'Confirm destroy?'
+            steps {
 
-        timeout(time: 3, unit: 'MINUTES') {
-            withCredentials([[
-                $class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'aws-lab-user'
-            ]]) {
-                dir('devops-cloud-lab/terraform') {
-                    sh 'terraform destroy -auto-approve'
+                input message: 'Are you sure you want to DESTROY the infrastructure?'
+
+                timeout(time: 3, unit: 'MINUTES') {
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-lab-user'
+                    ]]) {
+                        dir('devops-cloud-lab/terraform') {
+                            sh 'terraform init'
+                            sh 'terraform destroy -auto-approve'
+                        }
+                    }
                 }
             }
         }
