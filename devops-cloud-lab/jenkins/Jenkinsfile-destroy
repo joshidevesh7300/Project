@@ -13,17 +13,16 @@ pipeline {
         }
 
         stage('Terraform Destroy') {
-            steps {
-                input message: 'Are you sure you want to DESTROY the infrastructure?'
+    steps {
+        input message: 'Confirm destroy?'
 
-                withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'aws-lab-user'
-                ]]) {
-                    dir('devops-cloud-lab/terraform') {
-                        sh 'terraform init'
-                        sh 'terraform destroy -auto-approve'
-                    }
+        timeout(time: 3, unit: 'MINUTES') {
+            withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-lab-user'
+            ]]) {
+                dir('devops-cloud-lab/terraform') {
+                    sh 'terraform destroy -auto-approve'
                 }
             }
         }
