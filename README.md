@@ -94,5 +94,3 @@ Implementation of a scalable Node.js microservice on Minikube using Terraform.
 | `file-organizer.py` | Automatically sorts files into folders based on their extensions. |
 
 ---
-
-Would you like me to add a "Skills" section to this README that categorizes the tools you used (like Terraform, AWS, and Jenkins) across all these projects?
