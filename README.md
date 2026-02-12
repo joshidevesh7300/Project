@@ -4,7 +4,7 @@ This repository contains a comprehensive collection of DevOps projects, ranging 
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 * [Featured: CI/CD Pipeline Optimization](https://github.com/joshidevesh7300/Project/tree/233b508412b9f64f33bcff156766db7c65a69772/ci-cd-performance-fix)
 * [Cloud Lab Automation](https://github.com/joshidevesh7300/Project/tree/5ea29f6c5e69efad1bb72aa3523e7faadf710862/devops-cloud-lab)
@@ -15,7 +15,7 @@ This repository contains a comprehensive collection of DevOps projects, ranging 
 
 ---
 
-## 🔥 Featured: CI/CD Pipeline Optimization
+##  Featured: CI/CD Pipeline Optimization
 
 **Problem:** A slow, unstable Jenkins pipeline on a `t2.micro` instance was hanging and taking 70 seconds to build.
 
@@ -28,7 +28,7 @@ This repository contains a comprehensive collection of DevOps projects, ranging 
 
 ---
 
-## ☁️ Cloud Lab Automation
+##  Cloud Lab Automation
 
 Designed for EdTech platforms to provide consistent, cost-controlled learning environments.
 
@@ -37,7 +37,7 @@ Designed for EdTech platforms to provide consistent, cost-controlled learning en
 
 ---
 
-## 💰 AWS Cost Optimization
+##  AWS Cost Optimization
 
 **Identifying Stale EBS Snapshots:**
 
@@ -46,7 +46,7 @@ Designed for EdTech platforms to provide consistent, cost-controlled learning en
 
 ---
 
-## ☸️ Microservices & Observability (Task 1)
+##  Microservices & Observability (Task 1)
 
 Implementation of a scalable Node.js microservice on Minikube using Terraform.
 
@@ -86,7 +86,7 @@ Implementation of a scalable Node.js microservice on Minikube using Terraform.
 
 ---
 
-## 🐍 Python Automation Scripts
+##  Python Automation Scripts
 
 | Script | Description |
 | --- | --- |
