@@ -69,7 +69,7 @@ Implementation of a scalable Node.js microservice on Minikube using Terraform.
 
 ---
 
-## 🛠 Core DevOps Projects
+##  Core DevOps Projects
 
 ### Jenkins CI/CD Pipeline
 
