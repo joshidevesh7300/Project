@@ -7,11 +7,11 @@ This repository contains a comprehensive collection of DevOps projects, ranging 
 ## 📑 Table of Contents
 
 * [Featured: CI/CD Pipeline Optimization](https://github.com/joshidevesh7300/Project/tree/233b508412b9f64f33bcff156766db7c65a69772/ci-cd-performance-fix)
-* [Cloud Lab Automation]
-* [AWS Cost Optimization](https://www.google.com/search?q=%23-aws-cost-optimization)
-* [Microservices & Observability (Task 1)](https://www.google.com/search?q=%23-microservices--observability-task-1)
-* [Core DevOps Projects (Docker, K8s, Jenkins)](https://www.google.com/search?q=%23-core-devops-projects)
-* [Python Automation Scripts](https://www.google.com/search?q=%23-python-automation-scripts)
+* [Cloud Lab Automation](https://github.com/joshidevesh7300/Project/tree/5ea29f6c5e69efad1bb72aa3523e7faadf710862/devops-cloud-lab)
+* [AWS Cost Optimization](https://github.com/joshidevesh7300/Project/tree/5ea29f6c5e69efad1bb72aa3523e7faadf710862/AWS%20Cloud%20Cost%20Optimization%20-%20Identifying%20Stale%20Resources)
+* [Microservices & Observability (Task 1)](https://github.com/joshidevesh7300/Project/tree/5ea29f6c5e69efad1bb72aa3523e7faadf710862/task1)
+* [Core DevOps Projects (Docker, K8s, Jenkins)](https://github.com/joshidevesh7300/Project/tree/5ea29f6c5e69efad1bb72aa3523e7faadf710862/jenkins)
+* [Python Automation Scripts](https://github.com/joshidevesh7300/Project/tree/5ea29f6c5e69efad1bb72aa3523e7faadf710862/python-automation-scripts)
 
 ---
 
