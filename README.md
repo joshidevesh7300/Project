@@ -6,8 +6,8 @@ This repository contains a comprehensive collection of DevOps projects, ranging 
 
 ## 📑 Table of Contents
 
-* [Featured: CI/CD Pipeline Optimization](https://www.google.com/search?q=%23-featured-cicd-pipeline-optimization)
-* [Cloud Lab Automation](https://www.google.com/search?q=%23-cloud-lab-automation)
+* [Featured: CI/CD Pipeline Optimization](https://github.com/joshidevesh7300/Project/tree/233b508412b9f64f33bcff156766db7c65a69772/ci-cd-performance-fix)
+* [Cloud Lab Automation]
 * [AWS Cost Optimization](https://www.google.com/search?q=%23-aws-cost-optimization)
 * [Microservices & Observability (Task 1)](https://www.google.com/search?q=%23-microservices--observability-task-1)
 * [Core DevOps Projects (Docker, K8s, Jenkins)](https://www.google.com/search?q=%23-core-devops-projects)
