@@ -4,6 +4,6 @@ provider "aws"{
 
 resource "aws_instance" "lab-id1"{
   tag{
-    Name: "lab-id1"
+    Name = "lab-id1"
     }
 }
