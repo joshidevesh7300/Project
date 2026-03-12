@@ -6,3 +6,4 @@ resource "aws_instance" "lab-id1"{
   tag{
     name: "lab-id1"
     }
+}
