@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'ACTION',
+            choices: ['CREATE', 'DESTROY'],
+            description: 'Choose CREATE to provision infra or DESTROY to remove infra'
+        )
+    }
+
+    environment {
+        AWS_DEFAULT_REGION = "ap-south-1"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/joshidevesh7300/Project.git'
+            }
+        }
+
+        stage('User Confirmation') {
+            steps {
+                input message: "You selected ${params.ACTION}. Do you want to continue?"
+            }
+        }
+
+        stage('Terraform Action') {
+            steps {
+                timeout(time: 3, unit: 'MINUTES') {
+                    withCredentials([[ 
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-lab-user'
+                    ]]) {
+                        dir('devops-cloud-lab/terraform') {
+                            sh 'terraform init'
+
+                            script {
+                                if (params.ACTION == 'CREATE') {
+                                    sh 'terraform apply -auto-approve'
+                                } else if (params.ACTION == 'DESTROY') {
+                                    sh 'terraform destroy -auto-approve'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
