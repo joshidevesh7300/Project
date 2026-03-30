@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -11,9 +10,17 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo "Building Docker Image..."
-                sh 'docker build -t flask-app:v1.0 -f app/Dockerfile ./app'
-                echo "Docker Image built successfully!"
+                echo "🔨 Building Docker Image v1. ..."
+                sh 'docker build -t flask-app:v1. -f app/Dockerfile ./app'
+                sh 'docker tag flask-app:v1. flask-app:latest'
+                echo "✅ Docker Image built successfully! (Tag: v1. & latest)"
+            }
+        }
+
+        stage('Clean Old Images') {
+            steps {
+                echo "🧹 Cleaning old unused Docker images..."
+                sh 'docker image prune -f'
             }
         }
     }
