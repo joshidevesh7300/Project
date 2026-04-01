@@ -1,3 +1,96 @@
+git init
+git remote add origin https://github.com/joshidevesh7300/Project.git
+git checkout -b edtech-student-portal
+ls
+cd edtech-student-portal/
+mkdir app k8s terraform helm
+ls
+touch Jenkinsfile .gitignore README.md
+ls
+ls -a
+cd app
+ls
+touch app.py requirements.txt Dockerfile
+ls
+cd ..
+cd k8s
+touch deployment.yaml service.yaml
+ls
+cd ..
+cd terraform/
+touch main.tf variable.tf output.tf
+cd ..
+mkdir -p helm/student-portal
+ls
+cd helm
+ls
+cd ..
+tree
+sudo app install tree
+sudo apt install tree
+cd ./
+cd ../
+sudo apt install tree
+sudo apt updaye
+sudo apt update
+sudo apt install tree
+ls
+git add .
+git commit -m "files & folder"
+git push origin edtech-student-portal
+tree
+ls
+cd edtech-student-portal/
+ls
+cd app
+ls
+vi Dockerfile 
+cd ..
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+sudo systemctl staus docker
+sudo systemctl status docker
+docker build -t student-portal:v1 -f app/Dockerfile ./app
+pwd
+ls
+sudo usermod -aG docker ubuntu
+pwd
+docker build -t student-portal:v1 -f app/Dockerfile ./app
+sudo docker build -t student-portal:v1 -f app/Dockerfile ./app
+sudo docker ps
+sudo docker list
+docker list
+sudo docker run -d -p 5000:5000 --name student-portal student-portal:v1
+sudo docker ps
+sudo ifconfig.me
+ifconfig.me
+ifconfig
+sudo apt install net-tools
+ifconfig.me
+ifconfig
+sudo ipconfig.me
+curl ifconfig.me
+ifconfig
+ls
+cd edtech-student-portal/
+ls
+cd app
+ls
+cat > app.py <<EOF
 from flask import Flask, render_template_string
 import os
 from datetime import datetime
@@ -89,3 +182,9 @@ def home():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+EOF
+
+ls
+cat app.py 
+vi requirements.txt 
+cat requirements.txt 

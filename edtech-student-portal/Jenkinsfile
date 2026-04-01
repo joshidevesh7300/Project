@@ -1,0 +1,58 @@
+peline {
+    agent any
+
+    environment {
+        APP_NAME = "student-portal"
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+                echo "✅ Code checked out successfully for Student Portal"
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "🔨 Building Docker Image: ${APP_NAME}:v${BUILD_NUMBER}"
+                sh """
+                    docker build -t ${APP_NAME}:v${BUILD_NUMBER} \
+                                 -f app/Dockerfile ./app
+                    docker tag ${APP_NAME}:v${BUILD_NUMBER} ${APP_NAME}:latest
+                """
+                echo "✅ Docker Image built successfully! Tag: v${BUILD_NUMBER}"
+            }
+        }
+
+        stage('Test Container') {
+            steps {
+                echo "🧪 Testing the Student Portal container..."
+                sh """
+                    docker run -d --name test-portal -p 5001:5000 ${APP_NAME}:v${BUILD_NUMBER}
+                    sleep 5
+                    curl -f http://localhost:5001 || exit 1
+                    docker stop test-portal
+                    docker rm test-portal
+                """
+                echo "✅ Container test passed successfully!"
+            }
+        }
+
+        stage('Clean Old Images') {
+            steps {
+                echo "🧹 Cleaning old unused Docker images..."
+                sh 'docker image prune -f'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "🎉 Student Learning Portal Pipeline executed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed. Please check the logs."
+        }
+    }
+}
