@@ -1,0 +1,72 @@
+
+n
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django & Flask specific
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfvars
+crash.log
+*.tfplan
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Docker
+.docker/
+Dockerfile.*.local
+
+# Logs & temporary files
+*.log
+*.tmp
+*.temp
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Minikube / Local cluster
+.minikube/
+kubeconfig
+
+# Large files / Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+terraform-provider-*
